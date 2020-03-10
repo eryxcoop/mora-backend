@@ -6,7 +6,7 @@ from database import mongo
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(Config)
+    app.config.from_object(Config.for_actual_environment())
     mongo.init_app(app)
     register_endpoints(app)
     return app
@@ -15,4 +15,4 @@ def create_app():
 app = create_app()
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0')

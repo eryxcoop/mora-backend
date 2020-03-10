@@ -4,8 +4,9 @@ python:
 install:
   - pip install -r requirements/requirements.txt
 env:
-  - ENVIRONMENT=testing
-  - MONGO_TEST_DBNAME=mora-test
-  - MONGO_TEST_URI=mongodb://db:27017/mora-test
+  global:
+    - ENVIRONMENT=testing
+    - MONGO_TEST_DBNAME=mora-test
+    - MONGO_TEST_URI=mongodb://db:27017/mora-test
 script:
   - python -m unittest discover tests

@@ -7,6 +7,8 @@ env:
   global:
     - ENVIRONMENT=testing
     - MONGO_TEST_DBNAME=mora-test
-    - MONGO_TEST_URI=mongodb://db:27017/mora-test
+    - MONGO_TEST_URI=mongodb://127.0.0.1:27017/mora-test
+services:
+  - mongodb
 script:
   - python -m unittest discover tests

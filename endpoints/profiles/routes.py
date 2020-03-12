@@ -25,8 +25,7 @@ def create_profile():
     elif not name_is_valid(data):
         response = {"success": False, "message": "A profile with the same name is associated with the phone"}
     else:
-        mongo.db.profiles_list.insert_one(data)
-        response = mongo.db.profiles_list.find_one()
-        response.update({"success": True})
+        mongo.db.profiles.insert_one(data)
+        response = {"success": True}
 
     return dumps(response)

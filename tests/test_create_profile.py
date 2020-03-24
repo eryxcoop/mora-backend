@@ -2,13 +2,11 @@ import unittest
 import json
 
 from app import app
-from database import mongo
 
 
 class ProfileTest(unittest.TestCase):
     def setUp(self):
         self.app = app.test_client()
-        self.db = mongo.db
 
     def _url(self):
         return '/api/profiles'
@@ -27,7 +25,7 @@ class ProfileTest(unittest.TestCase):
 
         # Then
         self.assertTrue(json.loads(response.data)['success'])
-        self.assertEqual(200, response.status_code)
+        self.assertEqual(201, response.status_code)
 
     def test_if_a_field_is_missing_the_profile_is_not_created(self):
         # Given
@@ -43,7 +41,7 @@ class ProfileTest(unittest.TestCase):
         # Then
         self.assertFalse(json.loads(response.data)['success'])
         self.assertIn("grade", json.loads(response.data)['error_message'])
-        self.assertEqual(200, response.status_code)
+        self.assertEqual(500, response.status_code)
 
     def test_if_a_fields_type_is_wrong_the_profile_is_not_created(self):
         # Given
@@ -60,7 +58,7 @@ class ProfileTest(unittest.TestCase):
         # Then
         self.assertFalse(json.loads(response.data)['success'])
         self.assertIn("3", json.loads(response.data)['error_message'])
-        self.assertEqual(200, response.status_code)
+        self.assertEqual(500, response.status_code)
 
     def test_if_theres_an_additional_field_the_profile_is_not_created(self):
         # Given
@@ -78,4 +76,4 @@ class ProfileTest(unittest.TestCase):
         # Then
         self.assertFalse(json.loads(response.data)['success'])
         self.assertIn("additional_field", json.loads(response.data)['error_message'])
-        self.assertEqual(200, response.status_code)
+        self.assertEqual(500, response.status_code)

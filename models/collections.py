@@ -13,6 +13,9 @@ class ProfilesCollection(object):
         self._validate(json_data)
         self._profiles.insert_one(json_data)
 
+    def all(self):
+        return self._profiles.find()
+
     def exists_with(self, phone_id, name):
         return self._profiles.count_documents({"name": name, "phone_id": phone_id}) != 0
 
@@ -22,10 +25,10 @@ class ProfilesCollection(object):
             "properties": {
                 "name": {"type": "string"},
                 "age": {"type": "number"},
-                "grade": {"type": "number"},
                 "phone_id": {"type": "string"},
+                "avatar_name": {"type": "string"}
             },
-            "required": ["name", "age", "grade", "phone_id"],
+            "required": ["name", "age", "phone_id", "avatar_name"],
             "additionalProperties": False
         }
         return schema

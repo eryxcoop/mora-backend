@@ -8,5 +8,10 @@ from . import users
 def users_list():
     mongo.db.testData.insert_one({'Test': 'usuarioDeTest'})
     test_data = mongo.db.testData.find_one()
-    return dumps({'juan': test_data['Test']})
+    return dumps({
+        "object": {
+            'juan': test_data['Test']
+        },
+        "errors": []
+    })
 

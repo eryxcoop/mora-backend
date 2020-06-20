@@ -9,9 +9,18 @@ from . import profiles
 def create_profile():
     try:
         ProfilesCollection().add(request.get_json())
-        response = {"success": True}
+        response = {"object": {}, "errors": []}
         status_code = 201
     except Exception as error:
-        response = {"success": False, "error_message": error.message}
+        response = {"object": {}, "errors": [error.message]}
         status_code = 500
+    return dumps(response), status_code
+
+
+@profiles.route('/profiles', methods=['GET'])
+def all_profiles():
+    profiles = ProfilesCollection().all()
+    response = {"object": profiles, "errors": []}
+    status_code = 200
+
     return dumps(response), status_code

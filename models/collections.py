@@ -3,6 +3,11 @@ from jsonschema import validate, ValidationError
 
 
 class ProfilesCollection(object):
+    NAME_FIELD = "name"
+    AGE_FIELD = "age"
+    PHONE_ID_FIELD = "phoneId"
+    AVATAR_NAME_FIELD = "avatarName"
+
     def __init__(self, ):
         self._profiles = mongo.db.profiles_list
 
@@ -17,18 +22,18 @@ class ProfilesCollection(object):
         return self._profiles.find()
 
     def exists_with(self, phone_id, name):
-        return self._profiles.count_documents({"name": name, "phone_id": phone_id}) != 0
+        return self._profiles.count_documents({"name": name, "phoneId": phone_id}) != 0
 
     def _json_schema(self):
         schema = {
             "type": "object",
             "properties": {
-                "name": {"type": "string"},
-                "age": {"type": "number"},
-                "phone_id": {"type": "string"},
-                "avatar_name": {"type": "string"}
+                self.NAME_FIELD: {"type": "string"},
+                self.AGE_FIELD: {"type": "number"},
+                self.PHONE_ID_FIELD: {"type": "string"},
+                self.AVATAR_NAME_FIELD: {"type": "string"}
             },
-            "required": ["name", "age", "phone_id", "avatar_name"],
+            "required": [self.NAME_FIELD, self.AGE_FIELD, self.PHONE_ID_FIELD, self.AVATAR_NAME_FIELD],
             "additionalProperties": False
         }
         return schema

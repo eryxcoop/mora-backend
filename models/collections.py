@@ -13,16 +13,27 @@ class ProfilesCollection(object):
 
     def _validate(self, json_data):
         validate(instance=json_data, schema=self._json_schema())
+        self._validate_unique(json_data["phoneId"], json_data["name"])
 
     def add(self, json_data):
         self._validate(json_data)
         self._profiles.insert_one(json_data)
+
+    def add_many(self, profiles):
+        for profile in profiles:
+            self._validate(profile)
+
+        self._profiles.insert_many(profiles)
 
     def all(self):
         return self._profiles.find()
 
     def exists_with(self, phone_id, name):
         return self._profiles.count_documents({"name": name, "phoneId": phone_id}) != 0
+
+    def _validate_unique(self, phone_id, name):
+        if self.exists_with(phone_id=phone_id, name=name):
+            raise ValidationError("A profile with that phone id and name already exists.")
 
     def _json_schema(self):
         schema = {

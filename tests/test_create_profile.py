@@ -12,7 +12,7 @@ class ProfileTest(unittest.TestCase):
         self.db = mongo.db
 
     def _url(self):
-        return '/api/profiles'
+        return '/api/profile'
 
     def test_if_the_fields_are_correct_the_profile_is_created(self):
         # Given

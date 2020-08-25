@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web:
+    build: .
+    command: python -u app.py
+    ports:
+      - "80:5000"
+    links:
+      - db
+    volumes:
+      - ./:/mora
+  db:
+    image: mongo:3.0.2

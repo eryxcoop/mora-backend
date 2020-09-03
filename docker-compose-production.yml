@@ -2,12 +2,6 @@ version: '3'
 services:
   web:
     build: .
-    command: python -u app.py
+    command: waitress-serve --port=5000 --call app:create_app
     ports:
       - "80:5000"
-    links:
-      - db
-    volumes:
-      - ./:/mora
-  db:
-    image: mongo:3.0.2

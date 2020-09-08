@@ -6,3 +6,4 @@ jsonschema
 mongomock
 waitress
 dnspython
+sentry-sdk[flask]

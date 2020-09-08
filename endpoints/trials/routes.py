@@ -2,10 +2,12 @@ from bson.json_util import dumps
 from flask import request
 
 from models.collections import TrialsCollection
+from utils.login_required import login_required
 from . import trials
 
 
 @trials.route("/trials", methods=["POST"])
+@login_required
 def register_trial():
     try:
         TrialsCollection().add_many(request.get_json())
@@ -18,6 +20,7 @@ def register_trial():
 
 
 @trials.route('/trials', methods=['GET'])
+@login_required
 def all_trials():
     trials = TrialsCollection().all()
     response = {"object": trials, "errors": []}

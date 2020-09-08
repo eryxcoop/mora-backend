@@ -5,3 +5,4 @@ pytest
 jsonschema
 mongomock
 waitress
+sentry-sdk[flask]

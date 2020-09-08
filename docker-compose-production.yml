@@ -5,3 +5,6 @@ services:
     command: waitress-serve --port=5000 --call app:create_app
     ports:
       - "80:5000"
+    volumes:
+      - ./:/mora
+    restart: always

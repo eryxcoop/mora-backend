@@ -18,7 +18,9 @@ class TrialTest(unittest.TestCase):
             "name": profile_name,
             "avatarName": "avatar",
             "age": 10,
-            "phoneId": phone_id
+            "phoneId": phone_id,
+            "gender": "M",
+            "grade": "septimo"
         }
         self.profiles.add(profile_data)
 

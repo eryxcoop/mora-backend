@@ -7,6 +7,8 @@ class ProfilesCollection(object):
     AGE_FIELD = "age"
     PHONE_ID_FIELD = "phoneId"
     AVATAR_NAME_FIELD = "avatarName"
+    GRADE_FIELD = "grade"
+    GENDER_FIELD = "gender"
 
     def __init__(self, ):
         self._profiles = mongo.db.profiles_list
@@ -42,9 +44,12 @@ class ProfilesCollection(object):
                 self.NAME_FIELD: {"type": "string"},
                 self.AGE_FIELD: {"type": "number"},
                 self.PHONE_ID_FIELD: {"type": "string"},
-                self.AVATAR_NAME_FIELD: {"type": "string"}
+                self.AVATAR_NAME_FIELD: {"type": "string"},
+                self.GRADE_FIELD: {"type": "string"},
+                self.GENDER_FIELD: {"type": "string"},
             },
-            "required": [self.NAME_FIELD, self.AGE_FIELD, self.PHONE_ID_FIELD, self.AVATAR_NAME_FIELD],
+            "required": [self.NAME_FIELD, self.AGE_FIELD, self.PHONE_ID_FIELD, self.AVATAR_NAME_FIELD, self.GRADE_FIELD,
+                         self.GENDER_FIELD],
             "additionalProperties": False
         }
         return schema

@@ -20,7 +20,9 @@ class ProfileTest(unittest.TestCase):
             "name": "Maxi",
             "avatarName": "eternauta",
             "age": 10,
-            "phoneId": "abc"
+            "phoneId": "abc",
+            "gender": "M",
+            "grade": "septimo"
         }
 
         # When
@@ -53,7 +55,9 @@ class ProfileTest(unittest.TestCase):
             "name": "Maxi",
             "age": 10,
             "phoneId": "abc",
-            "avatarName": invalid_avatar_name
+            "avatarName": invalid_avatar_name,
+            "gender": "M",
+            "grade": "septimo"
         }
 
         # When
@@ -71,6 +75,8 @@ class ProfileTest(unittest.TestCase):
             "age": 10,
             "phoneId": "abc",
             "avatarName": "un avatar",
+            "gender": "M",
+            "grade": "septimo",
             "additionalField": "3",
         }
 
